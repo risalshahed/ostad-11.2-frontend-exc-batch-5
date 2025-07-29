@@ -15,7 +15,7 @@ npm run dev
 
 ### Problems in React
 
-- Only <div id=’root’> in Production.
+- Only &lt;div id=’root’&gt; in Production.
 - The full JS will be downloaded later & the components will be rendered one by one.
 - Even if there are 500/1000 pages or more, all will be loaded first & then the UI will be displayed!
 - Example: Movie download from torrent vs youtube video.
