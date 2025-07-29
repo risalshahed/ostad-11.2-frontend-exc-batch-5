@@ -5,32 +5,33 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
+git clone https://github.com/risalshahed/ostad-11.2-frontend-exc-batch-5
+cd ostad-11.2-frontend-exc-batch-5
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Why Next JS?
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Problems in React
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Only <div id=’root’> in Production.
+- The full JS will be downloaded later & the components will be rendered one by one.
+- Even if there are 500/1000 pages or more, all will be loaded first & then the UI will be displayed!
+- Example: Movie download from torrent vs youtube video.
 
-## Learn More
+#### In case of CSR,
 
-To learn more about Next.js, take a look at the following resources:
+- At first, html & css will be loaded & a blank html div with root “id” will be created i.e. a blank html page will be there.
+- And JS will be kept loaded, all the pages will be loaded & then the UI will be displayed! But Search Engine bot won’t wait! Rather after watching the empty html div, the SE will go away without crawling.
+- Also, the performance is poor, because the **First Contentful Paint** is delayed very much. Also, the **Time to Interactive** is delayed
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### In case of SSR,
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Not only the empty placeholder is displayed, also the full components (only the html, css part) is brought! But how? Because in SSR, the server will **simulate a browser** in the machine! Such as the development server when we run “npm run dev” via Node server.
+- Hence, the **First Contentful Paint** is solved. But the JS issue **is not solved** i.e. the application is not interactive yet! So, the SSR is just a trick to display something to the user as the user is not capable of interacting with anything yet! That means, SSR is Good for SEO but **Performance is still Poor**.
+- That means, SSR will only display the HTML, CSS part only in the first render of the application simulating a browser to the Server. And then, again he will load the whole JavaScript of the application on the server. Also, all the other pages will be rendered on the client side, only the first render of the application is SSR.
 
-## Deploy on Vercel
+### React Server Component
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Only the Components with user interactions will be Client Components. All the others will be Server Components. And in case of Server Components, every Server Component will be rendered only on Server. Meanwhile in case of SSR, the components are re-rendered in the Client site!
