@@ -30,7 +30,7 @@ npm run dev
 
 - Not only the empty placeholder is displayed, also the full components (only the html, css part) is brought! But how? Because in SSR, the server will **simulate a browser** in the machine! Such as the development server when we run “npm run dev” via Node server.
 - Hence, the **First Contentful Paint** is solved. But the JS issue **is not solved** i.e. the application is not interactive yet! So, the SSR is just a trick to display something to the user as the user is not capable of interacting with anything yet! That means, SSR is Good for SEO but **Performance is still Poor**.
-- That means, SSR will only display the HTML, CSS part only in the first render of the application simulating a browser to the Server. And then, again he will load the whole JavaScript of the application on the server. Also, all the other pages will be rendered on the client side, only the first render of the application is SSR.
+- SSR will only display the HTML, CSS part only in the first render of the application simulating a browser to the server. And then, again it will load the whole JavaScript of the application on the server. Also, all the other pages will be rendered on the client side, only the first render of the application is SSR.
 
 ### React Server Component
 
